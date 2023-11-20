@@ -105,22 +105,43 @@
                 <el-table :data="currentPageData" style="width: 100%">
                   <el-table-column label="Tick" prop="Tick">
                     <template v-slot="scope">
-                      <p class="scopeneme">
+                      <p @click="Trade(scope.$index, scope.row)" class="scopeneme">
                         {{ scope.row.Tick }}
                       </p>
                     </template>
                   </el-table-column>
-                  <el-table-column label="Holders" prop="Holders" sortable></el-table-column>
-                  <el-table-column label="Progress" prop="Progress" sortable>
-                    <div class="Progrex">
-                      100%
-                      <div class="Progre">
-                      </div>
-                    </div>
+                  <el-table-column label="Holders" prop="Holders" sortable>
+                    <template v-slot="scope">
+                      <p @click="Trade(scope.$index, scope.row)">
+                        {{ scope.row.Holders }}
+                      </p>
+                    </template>
                   </el-table-column>
-                  <el-table-column label="address" prop="address" sortable></el-table-column>
-                  <el-table-column label="TotalSupply" prop="TotalSupply" sortable></el-table-column>
-
+                  <el-table-column label="Progress" prop="Progress" sortable>
+                    <template v-slot="scope">
+                      <div class="paress" @click="Trade(scope.$index, scope.row)" >
+                        <div class="Progrex">
+                          100%
+                          <div class="Progre">
+                          </div>
+                        </div>
+                      </div>
+                    </template>
+                  </el-table-column>
+                  <el-table-column label="address" prop="address" sortable>
+                    <template v-slot="scope">
+                      <p @click="Trade(scope.$index, scope.row)">
+                        {{ scope.row.address }}
+                      </p>
+                    </template>
+                  </el-table-column>
+                  <el-table-column label="TotalSupply" prop="TotalSupply" sortable>
+                    <template v-slot="scope">
+                      <p @click="Trade(scope.$index, scope.row)">
+                        {{ scope.row.TotalSupply }}
+                      </p>
+                    </template>
+                  </el-table-column>
                 </el-table>
                 <div class="pagination-container">
                   <el-pagination class="fenye" :page-size="pageSize" :total="filteredData.length"
@@ -329,6 +350,11 @@ export default {
     },
   },
   methods: {
+    Trade(index, row) {
+      console.log(index, row)
+      localStorage.setItem('Tradename', JSON.stringify(row));
+      this.$router.push('/Trade');
+    },
     changeTab(tab) {
       this.activeTab = tab;
     },
@@ -361,6 +387,9 @@ export default {
   src: url('../assets/3.ttf');
 }
 
+.paress{
+  width: 100%;
+}
 .selected-tab {
   background-color: #000;
   color: #fff;
@@ -628,7 +657,8 @@ export default {
   .maket_one {
     width: 100%;
   }
-  .maket_one>h2{
+
+  .maket_one>h2 {
     text-align: center;
   }
 
@@ -640,4 +670,5 @@ export default {
   .content_five {
     margin-top: 2rem;
   }
-}</style>
+}
+</style>

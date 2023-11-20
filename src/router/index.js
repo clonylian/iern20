@@ -10,7 +10,7 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/Inscribe',  
+      path: '/Inscribe',
       name: 'Inscribe',
       component: () => import('../views/Inscribe.vue')
     },
@@ -25,10 +25,15 @@ const router = createRouter({
       name: 'Trade',
       component: () => import('../views/Trade.vue')
     }
-    ,{
+    , {
       path: '/tick',
       name: 'tick',
       component: () => import('../views/tick.vue')
+    }
+    , {
+      path: '/address',
+      name: 'address',
+      component: () => import('../views/address.vue')
     }
   ]
 })

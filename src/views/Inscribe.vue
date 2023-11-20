@@ -276,12 +276,38 @@ export default {
 }
 
 .Deploys {
-    width: 90%;
+    width: 100%;
     height: 3rem;
     border-radius: 30px;
     background-color: rgb(234, 234, 234);
     margin: 0 auto;
     text-align: center;
     line-height: 3rem;
+}
+@media (max-width: 600px) {
+    .market_one{
+        display: none;
+    }
+    .market_two{
+        width: 100%;
+   
+    }
+    .market_three{
+    width: 100%;   
+    box-sizing: border-box;
+    }
+    .maek_input{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .maek_inputx {
+        width: 300px;
+    }
+    .market_three{
+        border: none;
+    }
+    .market{
+        height: 100%;
+    }
 }
 </style>

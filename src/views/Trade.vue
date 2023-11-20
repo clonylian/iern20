@@ -166,33 +166,35 @@
                     </div>
                     <div class="tar_nrfive">
                         <el-table :data="Orders" style="width: 100%">
-                            <el-table-column label="Date Time" width="175">
+                            <el-table-column label="Date Time" >
                                 <template v-slot="scope">
                                     <i class="el-icon-time"></i>
                                     <span style="margin-left: 10px">{{ scope.row.DateTime }}</span>
                                 </template>
                             </el-table-column>
-                            <el-table-column label="Method" width="175">
+                            <el-table-column label="Method">
                                 <template v-slot="scope">
-                                    {{ scope.row.Method }}
+                                    <p style="width: 3rem; border-radius: 5px; background-color: rgb(235, 235, 235);">
+                                        {{ scope.row.Method }}
+                                    </p>
                                 </template>
                             </el-table-column>
-                            <el-table-column label="Amount" width="175">
+                            <el-table-column label="Amount" >
                                 <template v-slot="scope">
                                     {{ scope.row.Amount }}
                                 </template>
                             </el-table-column>
-                            <el-table-column label="Unit Price" width="175">
+                            <el-table-column label="Unit Price" >
                                 <template v-slot="scope">
                                     {{ scope.row.UnitPrice }}
                                 </template>
                             </el-table-column>
-                            <el-table-column label="Total Value" width="175">
+                            <el-table-column label="Total Value" >
                                 <template v-slot="scope">
                                     {{ scope.row.TotalValue }}
                                 </template>
                             </el-table-column>
-                            <el-table-column label="buyer" width="175">
+                            <el-table-column label="buyer" >
                                 <template v-slot="scope">
                                     {{
                                         scope.row.buyer.substr(0, 4) +
@@ -200,7 +202,7 @@
                                         scope.row.buyer.substr(-4) }}
                                 </template>
                             </el-table-column>
-                            <el-table-column label="Seller" width="175">
+                            <el-table-column label="Seller" >
                                 <template v-slot="scope">
                                     {{
                                         scope.row.Seller.substr(0, 4) +
@@ -208,7 +210,7 @@
                                         scope.row.Seller.substr(-4) }}
                                 </template>
                             </el-table-column>
-                            <el-table-column label="Hash" width="175">
+                            <el-table-column label="Hash" >
                                 <template v-slot="scope">
                                     <div>
                                         <a target="_blank"
@@ -254,6 +256,7 @@ export default {
     data() {
         return {
             userData: null,
+            Tradename:null,
             activeTab: 'tab1',
             firstInput: '',
             lastInput: '',
@@ -392,6 +395,8 @@ export default {
         this.disableLastInput = true;
         const storedUserData = localStorage.getItem('userName');
         this.userData = JSON.parse(storedUserData);
+        const storedTradename = localStorage.getItem('Tradename');
+        this.userData = JSON.parse(storedTradename);
         // console.log(this.userData);
     }
 

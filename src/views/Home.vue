@@ -3,7 +3,7 @@
     <div class="center">
       <h3>Check Out The ETH Inscription Token Balance Of The Address.</h3>
       <div class="center_one">
-        <input placeholder="Search by address">
+        <input v-model="search" placeholder="Search by address">
         <svg t="1700197252775" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
           p-id="12841" width="16" height="16">
           <path
@@ -30,47 +30,40 @@
             <el-table :data="currentPageData" style="width: 100%">
               <el-table-column label="Tick" prop="Tick">
                 <template v-slot="scope">
-                  <router-link class="tick" to="/tick">
-                    <p class="scopeneme">
-                      {{ scope.row.Tick }}
-                    </p>
-                  </router-link>
+                  <p class="scopeneme" @click="tick(scope.$index, scope.row)">
+                    {{ scope.row.Tick }}
+                  </p>
                 </template>
               </el-table-column>
-              <el-table-column label="Holders" prop="Holders" sortable>
+              <el-table-column label="DeployTime" prop="DeployTime" sortable>
                 <template v-slot="scope">
-                  <router-link class="tick" to="/tick">
-                    <p style="color: black;">
-                      {{ scope.row.Holders }}
-                    </p>
-                  </router-link>
+                  <p style="color: black;" @click="tick(scope.$index, scope.row)">
+                    {{ scope.row.DeployTime }}
+                  </p>
                 </template>
               </el-table-column>
               <el-table-column label="Progress" prop="Progress" sortable>
-                <router-link class="tick" to="/tick">
-                  <div class="Progrex">
+                <template v-slot="scope">
+                  <div class="Progrex" @click="tick(scope.$index, scope.row)">
                     100%
                     <div class="Progre">
                     </div>
                   </div>
-                </router-link>
+                </template>
               </el-table-column>
-              <el-table-column label="address" prop="address" sortable>
+              <el-table-column label="Holders" prop="Holders" sortable>
                 <template v-slot="scope">
-                  <router-link class="tick" to="/tick">
-                    <p style="color: black;">
-                      {{ scope.row.address }}
-                    </p>
-                  </router-link>
+
+                  <p @click="tick(scope.$index, scope.row)" style="color: black;">
+                    {{ scope.row.Holders }}
+                  </p>
                 </template>
               </el-table-column>
               <el-table-column label="TotalSupply" prop="TotalSupply" sortable>
                 <template v-slot="scope">
-                  <router-link class="tick" to="/tick">
-                    <p style="color: black;">
-                      {{ scope.row.TotalSupply }}
-                    </p>
-                  </router-link>
+                  <p style="color: black;" @click="tick(scope.$index, scope.row)">
+                    {{ scope.row.TotalSupply }}
+                  </p>
                 </template>
               </el-table-column>
               <el-table-column align="right">
@@ -93,47 +86,41 @@
             <el-table :data="currentPageDatat" style="width: 100%">
               <el-table-column label="Tick" prop="Tick">
                 <template v-slot="scope">
-                  <router-link class="tick" to="/tick">
-                    <p class="scopeneme">
-                      {{ scope.row.Tick }}
-                    </p>
-                  </router-link>
+                  <p @click="tick(scope.$index, scope.row)" class="scopeneme">
+                    {{ scope.row.Tick }}
+                  </p>
                 </template>
               </el-table-column>
-              <el-table-column label="Holders" prop="Holders" sortable>
+              <el-table-column label="DeployTime" prop="DeployTime" sortable>
                 <template v-slot="scope">
-                  <router-link class="tick" to="/tick">
-                    <p style="color: black;">
-                      {{ scope.row.Holders }}
-                    </p>
-                  </router-link>
+                  <p @click="tick(scope.$index, scope.row)" style="color: black;">
+                    {{ scope.row.DeployTime }}
+                  </p>
                 </template>
               </el-table-column>
               <el-table-column label="Progress" prop="Progress" sortable>
-                <router-link class="tick" to="/tick">
-                  <div class="Progrex">
+                <template v-slot="scope">
+                  <div @click="tick(scope.$index, scope.row)" class="Progrex">
                     100%
                     <div class="Progre">
                     </div>
                   </div>
-                </router-link>
+                </template>
               </el-table-column>
-              <el-table-column label="address" prop="address" sortable>
+              <el-table-column label="Holders" prop="Holders" sortable>
                 <template v-slot="scope">
-                  <router-link class="tick" to="/tick">
-                    <p style="color: black;">
-                      {{ scope.row.address }}
-                    </p>
-                  </router-link>
+
+                  <p @click="tick(scope.$index, scope.row)" style="color: black;">
+                    {{ scope.row.Holders }}
+                  </p>
+
                 </template>
               </el-table-column>
               <el-table-column label="TotalSupply" prop="TotalSupply" sortable>
                 <template v-slot="scope">
-                  <router-link class="tick" to="/tick">
-                    <p style="color: black;">
-                      {{ scope.row.TotalSupply }}
-                    </p>
-                  </router-link>
+                  <p @click="tick(scope.$index, scope.row)" style="color: black;">
+                    {{ scope.row.TotalSupply }}
+                  </p>
                 </template>
               </el-table-column>
               <el-table-column align="right">
@@ -159,104 +146,92 @@
 </template>
 
 <script>
-
-
 export default {
   data() {
     return {
       tableData: [
         {
           Tick: '王小虎1',
-          DeployTime: '2016-05-02',
-          address: '21,000,00',
+          DeployTime: '2016-05-02 17.51.51',
+          Holders: '21,000,00',
           Progress: '100%',
-          Holders: '2023-7-12',
           TotalSupply: 4200,
         },
         {
           Tick: '王小虎1',
-          DeployTime: '2016-05-02',
-          address: '21,000,00',
+          DeployTime: '2016-05-02 17.51.41',
+          Holders: '21,000,00',
           Progress: '100%',
-          Holders: '2023-7-12',
           TotalSupply: 4200,
         },
         {
           Tick: '王小虎1',
-          DeployTime: '2016-05-02',
-          address: '21,000,00',
+          DeployTime: '2016-05-02 17.51.41',
+          Holders: '21,000,00',
           Progress: '100%',
-          Holders: '2023-7-12',
           TotalSupply: 4200,
         },
         {
           Tick: '王小虎2',
-          DeployTime: '2016-05-02',
-          address: '4,000,00',
+          DeployTime: '2016-05-02 17.51.21',
+          Holders: '4,000,00',
           Progress: '100%',
-          Holders: '2023-7-2',
           TotalSupply: 3200,
         },
         {
           Tick: '王小虎1',
-          DeployTime: '2016-05-02',
-          address: '21,000,00',
+          DeployTime: '2016-05-02 17.31.41',
+          Holders: '21,000,00',
           Progress: '100%',
-          Holders: '2023-7-12',
           TotalSupply: 4200,
         },
       ],
       tableDatat: [
         {
           Tick: '王小虎1',
-          DeployTime: '2016-05-02',
-          address: '21,100,00',
+          DeployTime: '2016-05-02 14.31.41',
+          Holders: '21,100,00',
           Progress: '100%',
-          Holders: '2023-7-12',
           TotalSupply: 4200,
         },
         {
           Tick: '王小虎2',
-          DeployTime: '2016-05-02',
-          address: '21,200,00',
+          DeployTime: '2016-05-02 5.31.41',
+          Holders: '21,200,00',
           Progress: '100%',
-          Holders: '2023-7-12',
           TotalSupply: 4200,
         },
         {
           Tick: '王小虎3',
-          DeployTime: '2016-05-02',
-          address: '21,300,00',
+          DeployTime: '2016-05-02 8.31.41',
+          Holders: '21,300,00',
           Progress: '100%',
-          Holders: '2023-7-12',
           TotalSupply: 4200,
         },
         {
           Tick: '王小虎4',
-          DeployTime: '2016-05-02',
-          address: '4,400,00',
+          DeployTime: '2016-05-02 9.31.41',
+          Holders: '4,400,00',
           Progress: '100%',
-          Holders: '2023-7-2',
           TotalSupply: 3200,
         },
         {
           Tick: '王小虎5',
-          DeployTime: '2016-05-02',
-          address: '21,500,00',
+          DeployTime: '2016-05-02 13.31.41',
+          Holders: '21,500,00',
           Progress: '100%',
-          Holders: '2023-7-12',
           TotalSupply: 4200,
         },
         {
           Tick: '王小虎6',
-          DeployTime: '2016-05-02',
-          address: '21,600,00',
+          DeployTime: '2016-05-02 14.11.41',
+          Holders: '21,600,00',
           Progress: '100%',
-          Holders: '2023-7-12',
           TotalSupply: 4200,
         },
       ],
       search: '',
+      searchx:'',
       currentPage: 1,
       pageSize: 5,
       currentPaget: 1,
@@ -267,7 +242,7 @@ export default {
   computed: {
     filteredData() {
       return this.tableData.filter(data => {
-        if (!this.search) {
+        if (!this.search ) {
           return true;
         }
         if (data.Tick && typeof data.Tick === 'string') {
@@ -307,11 +282,16 @@ export default {
       console.log(row);
       localStorage.setItem('userName', JSON.stringify(row));
       this.$router.push('/Trade');
-
+    },
+    tick(index, row) {
+      console.log(index, row)
+      localStorage.setItem('tickname', JSON.stringify(row));
+      this.$router.push('/tick');
     },
     handleCurrentChange(page) {
       this.currentPage = page;
     },
+
     handleCurrentChanget(page) {
       this.currentPaget = page;
     },
@@ -666,7 +646,8 @@ export default {
     width: 7rem;
     font-size: 14px;
   }
-  .center_one{
+
+  .center_one {
     width: 80%;
   }
 }
